@@ -1,4 +1,4 @@
-package com.restaurant.app;
+package com.bnj;
 
 public interface ComponentScanMarker {
 

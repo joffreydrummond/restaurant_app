@@ -1,12 +1,14 @@
 package com.bnj.restaurant;
 
-import com.restaurant.app.ComponentScanMarker;
+import com.bnj.ComponentScanMarker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackageClasses = {ComponentScanMarker.class})
-public class RestaurantApp {
+public class RestaurantSales {
+  
   public static void main(String[] args) {
-    SpringApplication.run(RestaurantApp.class, args);
+    SpringApplication.run(RestaurantSales.class, args);
   }
+
 }
