@@ -1,6 +1,1 @@
-spring:  datasource:    password: food    username: food    url: jdbc:mysql://localhost:3306/restaurant 
-
-logging:
-  level:
-    root: warn
-    '[com.promineotech]': debug
+spring:  datasource:    password: food    username: food    url: jdbc:mysql://localhost:3306/restaurant logging:  level:    root: warn    '[com.restaurant]': debug
