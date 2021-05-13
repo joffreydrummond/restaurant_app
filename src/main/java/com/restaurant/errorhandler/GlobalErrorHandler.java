@@ -1,4 +1,4 @@
-package errorhandler;
+package com.restaurant.errorhandler;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
