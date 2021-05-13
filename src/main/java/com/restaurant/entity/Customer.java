@@ -1,6 +1,7 @@
 package com.restaurant.entity;
 
 public class Customer {
+  private int customer_id;
   private String food_name;
   private String description;
   private boolean is_gluten_free;
