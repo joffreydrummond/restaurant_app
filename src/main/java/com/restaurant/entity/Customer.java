@@ -7,9 +7,9 @@ import lombok.Data;
 @Builder
 public class Customer {
   private int customer_id;
-  private String food_name;
-  private String description;
-  private boolean is_gluten_free;
-  private boolean is_vegan_free;
-  private double price;
+  private String first_name;
+  private String last_name;
+  private String address;
+  private String phone;
+  private String email;
 }
