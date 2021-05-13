@@ -1,4 +1,4 @@
-package com.restaurant.controller;
+package com.bnj.restaurant.controller;
 
 public interface RestaurantController {
 }

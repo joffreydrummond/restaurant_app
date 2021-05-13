@@ -1,4 +1,4 @@
-package com.restaurant.entity;
+package com.bnj.restaurant.entity;
 
 import lombok.Builder;
 import lombok.Data;

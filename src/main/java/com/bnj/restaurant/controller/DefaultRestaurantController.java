@@ -1,4 +1,4 @@
-package com.restaurant.controller;
+package com.bnj.restaurant.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ResponseStatus;
