@@ -18,11 +18,30 @@ import java.util.List;
 public interface CustomerController {
 
   @Operation(
-          summary = "Returns a list of customers",
-          description = "Returns a list of customers",
-          responses = {@ApiResponse(responseCode = "200", description = "A list of customers is returned", content =
-          @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Customer.class)))})
-
-
+      summary = "Returns a list of customers",
+      description = "Returns a list of customers",
+      responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "A list of customers is returned",
+            content =
+                @Content(
+                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                    schema = @Schema(implementation = Customer.class))),
+              @ApiResponse(
+                      responseCode = "500",
+                      description = "Internal Server Error Occurred",
+                      content =
+                      @Content(
+                              mediaType = MediaType.APPLICATION_JSON_VALUE,
+                              schema = @Schema(implementation = Customer.class))),
+              @ApiResponse(
+                      responseCode = "404",
+                      description = "The page you are looking for is not found. What did you do.",
+                      content =
+                      @Content(
+                              mediaType = MediaType.APPLICATION_JSON_VALUE,
+                              schema = @Schema(implementation = Customer.class)))
+      })
   List<Customer> getCustomers();
 }
