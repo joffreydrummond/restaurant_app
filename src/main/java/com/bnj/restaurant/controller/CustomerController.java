@@ -13,7 +13,7 @@ public class CustomerController implements CustomerOperation{
 
     @Override
     public List<Customer> getCustomers() {
-        log.info("I am in the getCustomers() in the controller");
+        log.debug("I am in getCustomers in the controller");
         return null;
     }
 }
