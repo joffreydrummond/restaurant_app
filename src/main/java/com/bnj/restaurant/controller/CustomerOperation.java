@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
-@RequestMapping("/customers")
+//returns list of customers
+
 @OpenAPIDefinition(
-    info = @Info(title = "Customer API"),
+    info = @Info(title = "Customer API V1"),
     servers = {@Server(url = "http://localhost:8080")})
 public interface CustomerOperation {
-  @Operation(
+
+    @RequestMapping("/v1/customers")
+    @Operation(
       summary = "Returns a list of customers",
       description = "Returns a list of customers",
       responses = {
@@ -45,6 +48,12 @@ public interface CustomerOperation {
             description = "Internal Server Error Occurred",
             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
       })
+
+
+
+
+
+
   @GetMapping
   @ResponseStatus(code = HttpStatus.OK)
   List<Customer> getCustomers();
