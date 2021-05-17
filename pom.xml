@@ -59,6 +59,14 @@
           <artifactId>spring-test</artifactId>
           <version>5.3.5</version>
       </dependency>
+    <!-- jdbc ===============================================================  -->
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>5.3.7</version>
+    </dependency>
+
 
 
   </dependencies>
