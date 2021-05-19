@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.List;
 
 // returns list of customers
-
+@RequestMapping("/v1/customers")
 @OpenAPIDefinition(
     info = @Info(title = "Customer API V1"),
-    servers = {@Server(url = "http://localhost:8080")})
+    servers = {@Server(url = "http://localhost:8080", description = "Local Server")})
 public interface CustomerOperation {
 
-  @RequestMapping("/v1/customers")
+
   @Operation(
       summary = "Returns a list of customers",
       description = "Returns a list of customers",
