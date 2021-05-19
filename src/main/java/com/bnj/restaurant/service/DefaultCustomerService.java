@@ -18,6 +18,6 @@ public class DefaultCustomerService implements CustomerService {
   @Override
   public List<Customer> getCustomers() {
     log.debug("I am getCustomers() in service");
-    return null;
+    return customerDao.getCustomers();
   }
 }
