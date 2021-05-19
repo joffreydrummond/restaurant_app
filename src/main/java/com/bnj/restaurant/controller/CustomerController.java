@@ -16,7 +16,7 @@ public class CustomerController implements CustomerOperation{
 
     @Override
     public List<Customer> getCustomers() {
-        log.debug("I am in getCustomers in the controller");
+        log.info("I am in getCustomers() in controller");
         return null;
     }
 }
