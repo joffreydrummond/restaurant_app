@@ -17,8 +17,7 @@ import java.util.List;
 @Component
 public class DefaultCustomerDao implements CustomerDao {
 
-  @Autowired
-  private NamedParameterJdbcTemplate jdbcTemplate;
+  @Autowired private NamedParameterJdbcTemplate jdbcTemplate;
 
   @Override
   public List<Customer> getCustomers() {
@@ -26,16 +25,17 @@ public class DefaultCustomerDao implements CustomerDao {
 
     final String sql = "SELECT * FROM customers";
     return
-//            null;
-            jdbcTemplate.query(
+    //            null;
+    jdbcTemplate.query(
         sql,
-                    (rs, i) -> Customer.builder()
-                        .customer_id(rs.getInt("customer_id"))
-                        .first_name(rs.getString("first_name"))
-                        .last_name(rs.getString("last_name"))
-                        .address(rs.getString("address"))
-                        .phone(rs.getString("phone"))
-                        .email(rs.getString("email"))
-                        .build());
+        (rs, i) ->
+            Customer.builder()
+                .customer_id(rs.getInt("customer_id"))
+                .first_name(rs.getString("first_name"))
+                .last_name(rs.getString("last_name"))
+                .address(rs.getString("address"))
+                .phone(rs.getString("phone"))
+                .email(rs.getString("email"))
+                .build());
   }
 }
