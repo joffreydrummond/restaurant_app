@@ -23,4 +23,9 @@ public class DefaultCustomerService implements CustomerService {
 
     return customers;
   }
+
+  @Override
+  public Customer createCustomer(Customer customer) {
+    return null;
+  }
 }
