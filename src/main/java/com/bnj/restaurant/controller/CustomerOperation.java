@@ -59,4 +59,9 @@ public interface CustomerOperation {
   @GetMapping
   @ResponseStatus(code = HttpStatus.OK)
   List<Customer> getCustomers();
+
+
+  Customer createCustomer(Customer customer);
+
+
 }
