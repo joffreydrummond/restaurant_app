@@ -17,11 +17,14 @@ public class CustomerController implements CustomerOperation{
     private CustomerService customerService;
 
     @RequestMapping
-
-
     @Override
     public List<Customer> getCustomers() {
         log.debug("I am getCustomers() in controller");
         return customerService.getCustomers();
+    }
+
+    @Override
+    public Customer createCustomer(Customer customer) {
+        return null;
     }
 }
