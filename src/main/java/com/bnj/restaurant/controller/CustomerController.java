@@ -25,6 +25,8 @@ public class CustomerController implements CustomerOperation{
 
     @Override
     public Customer createCustomer(Customer customer) {
-        return null;
+        log.debug("I am getCustomers() in controller");
+
+        return customerService.createCustomer(customer);
     }
 }

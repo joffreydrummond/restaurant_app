@@ -40,9 +40,14 @@ public class DefaultCustomerDao implements CustomerDao {
   }
 
   @Override
-  public Customer createCustomer() {
+  public Customer createCustomer(Customer customer) {
     log.debug("I am createCustomers() in dao");
+     final String sql = "INSERT INTO customers (first_name, last_name, address, phone, email) " +
+             "VALUES (:first_name, :last_name, :address, :phone, :email)";
 
-    return null;
+
+    return jdbcTemplate.query(sql, (rs, i) -> Customer.builder();
   }
+
+
 }

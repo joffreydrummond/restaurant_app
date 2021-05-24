@@ -8,6 +8,6 @@ import java.util.List;
 public interface CustomerDao {
     List<Customer> getCustomers();
 
-    Customer createCustomer();
+    Customer createCustomer(Customer customer);
 
 }
