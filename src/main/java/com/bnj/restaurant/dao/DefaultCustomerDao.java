@@ -41,6 +41,8 @@ public class DefaultCustomerDao implements CustomerDao {
 
   @Override
   public Customer createCustomer() {
+    log.debug("I am createCustomers() in dao");
+
     return null;
   }
 }
