@@ -61,5 +61,6 @@ public interface CustomerOperation {
   List<Customer> getCustomers();
 
   @PostMapping
+  @ResponseStatus(code = HttpStatus.CREATED)
   Customer createCustomer(Customer customer);
 }
