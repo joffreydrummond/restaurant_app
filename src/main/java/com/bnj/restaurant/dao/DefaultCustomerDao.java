@@ -29,18 +29,13 @@ public class DefaultCustomerDao implements CustomerDao {
 //            null;
             jdbcTemplate.query(
         sql,
-        new RowMapper<Customer>() {
-          @Override
-          public Customer mapRow(ResultSet rs, int i) throws SQLException {
-            return Customer.builder()
-                .customer_id(rs.getInt("customer_id"))
-                .first_name(rs.getString("first_name"))
-                .last_name(rs.getString("last_name"))
-                .address(rs.getString("address"))
-                .phone(rs.getString("phone"))
-                .email(rs.getString("email"))
-                .build();
-          }
-        });
+                    (rs, i) -> Customer.builder()
+                        .customer_id(rs.getInt("customer_id"))
+                        .first_name(rs.getString("first_name"))
+                        .last_name(rs.getString("last_name"))
+                        .address(rs.getString("address"))
+                        .phone(rs.getString("phone"))
+                        .email(rs.getString("email"))
+                        .build());
   }
 }
