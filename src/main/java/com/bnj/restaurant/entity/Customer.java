@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @Builder
-public class Customer {
+public class Customer implements Comparable<Customer>{
   private int customer_id;
 
   @NotBlank(message = "First name is required")
@@ -20,4 +20,9 @@ public class Customer {
   private String phone;
   @NotBlank(message = "Email is required")
   private String email;
+
+  @Override
+  public int compareTo(Customer o) {
+    return 0;
+  }
 }
