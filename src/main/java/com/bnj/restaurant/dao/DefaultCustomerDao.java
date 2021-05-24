@@ -38,4 +38,9 @@ public class DefaultCustomerDao implements CustomerDao {
                 .email(rs.getString("email"))
                 .build());
   }
+
+  @Override
+  public Customer createCustomer() {
+    return null;
+  }
 }
