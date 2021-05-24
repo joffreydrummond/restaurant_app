@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -23,7 +24,6 @@ import java.util.List;
     info = @Info(title = "Customer API V1"),
     servers = {@Server(url = "http://localhost:8080", description = "Local Server")})
 public interface CustomerOperation {
-
 
   @Operation(
       summary = "Returns a list of customers",
@@ -49,19 +49,17 @@ public interface CustomerOperation {
             description = "Internal Server Error Occurred",
             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
       },
-          parameters = {
-                  @Parameter(
-                          name = "customer_id",
-                          allowEmptyValue = false,
-                          required = false,
-                          description = "The customer id (i.e, '1', '2', '3')"),
-                         })
+      parameters = {
+        @Parameter(
+            name = "customer_id",
+            allowEmptyValue = false,
+            required = false,
+            description = "The customer id (i.e, '1', '2', '3')"),
+      })
   @GetMapping
   @ResponseStatus(code = HttpStatus.OK)
   List<Customer> getCustomers();
 
-
+  @PostMapping
   Customer createCustomer(Customer customer);
-
-
 }
