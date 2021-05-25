@@ -78,7 +78,7 @@ public class DefaultCustomerDao implements CustomerDao {
 
   public Customer  updateCustomer(Customer customer) {
     String sql = "UPDATE customers SET customer_Id = :customer_Id, first_name = :first_name, last_name = :last_name," +
-            "address = :address, phone = :phone, email = :email ";
+            "address = :address, phone = :phone, email = :email";
     SqlParameterSource sqlParam =
             new MapSqlParameterSource("first_name", customer.getFirst_name())
                     .addValue("last_name", customer.getLast_name())
@@ -89,9 +89,15 @@ public class DefaultCustomerDao implements CustomerDao {
     int rows = jdbcTemplate.update(sql, sqlParam);
     return customer;
 
-  }
 
 
+}
+
+public void deleteCustomerById(int customer_id){
+    String sql = "Delete FROM customers where customer_id =?";
+
+
+}
 
 
 }
