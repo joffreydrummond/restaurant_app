@@ -31,5 +31,8 @@ public class DefaultCustomerService implements CustomerService {
     return customerDao.createCustomer(customer);
   }
 
+  public Customer updateCustomer(Customer customer){
+    return customerDao.updateCustomer(customer);
+  }
 
 }
