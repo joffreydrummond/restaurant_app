@@ -105,22 +105,40 @@ public class DefaultCustomerDao implements CustomerDao {
         .build();
   }
 
-  public Customer updateCustomer(Customer customer) {
+  public Customer updateCustomerById(int customer_id, Customer customer) { //tried to
     String sql =
         "UPDATE customers SET first_name = :first_name, last_name = :last_name,"
             + "address = :address, phone = :phone, email = :email WHERE customer_id= :customer_id";
-    SqlParameterSource sqlParam =
-        new MapSqlParameterSource("first_name", customer.getFirst_name())
-            .addValue("last_name", customer.getLast_name())
-            .addValue("address", customer.getAddress())
-            .addValue("phone", customer.getPhone())
-            .addValue("email", customer.getEmail());
 
-    Map<String, Object> params = new HashMap<>();
-    params.put("customer_id", customer_id);
+    Customer customerSelected = getCustomerById(customer_id);
 
-    int rows = jdbcTemplate.update(sql, sqlParam);
-    return customer;
+    if (customerSelected != null) {
+      SqlParameterSource sqlParam =
+              new MapSqlParameterSource("first_name", customer.getFirst_name())
+                      .addValue("last_name", customer.getLast_name())
+                      .addValue("address", customer.getAddress())
+                      .addValue("phone", customer.getPhone())
+                      .addValue("email", customer.getEmail())
+                      .addValue("customer_id", customer_id);
+
+
+
+//      Map<String, Object> params = new HashMap<>();
+//      params.put("customer_id", customer_id);
+
+      jdbcTemplate.update(sql, sqlParam);
+
+      customerSelected = getCustomerById(customer_id);
+
+    }
+
+
+
+//    int rows = jdbcTemplate.update(sql, sqlParam);
+
+
+
+    return customerSelected;
   }
 
   public void deleteCustomerById(int customer_id) {

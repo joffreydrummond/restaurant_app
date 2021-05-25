@@ -38,9 +38,9 @@ public class CustomerController implements CustomerOperation {
   }
 
   @RequestMapping("/{customer_id}")
-  public Customer updateCustomer(@RequestBody Customer customer) {
+  public Customer updateCustomerById(@PathVariable("customer_id")int customer_id, @RequestBody Customer customer) {
     log.debug("I am updateCustomers() in controller");
 
-    return customerService.updateCustomer(customer);
+    return customerService.updateCustomerById(customer_id, customer);
   }
 }

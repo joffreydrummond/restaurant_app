@@ -11,5 +11,5 @@ public interface CustomerDao {
 
   Customer createCustomer(Customer customer);
 
-  Customer updateCustomer(Customer customer);
+  Customer updateCustomerById(int customer_id, Customer customer);
 }
