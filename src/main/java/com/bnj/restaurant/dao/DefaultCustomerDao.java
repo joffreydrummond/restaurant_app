@@ -59,7 +59,7 @@ SqlParameterSource sqlParam = new MapSqlParameterSource("first_name", customer.g
 
     KeyHolder keyHolder = new GeneratedKeyHolder();
 
-    jdbcTemplate.update(sql, sqlParam);
+    jdbcTemplate.update(sql, sqlParam, keyHolder);
 
     return customer;
   }
