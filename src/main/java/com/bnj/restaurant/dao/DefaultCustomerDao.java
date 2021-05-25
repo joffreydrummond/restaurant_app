@@ -48,21 +48,20 @@ public class DefaultCustomerDao implements CustomerDao {
                 .build());
   }
 
- class CustomerResultSetExtractor implements ResultSetExtractor <Customer> {
+  class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
     @Override
     public Customer extractData(ResultSet rs) throws SQLException, DataAccessException {
       rs.next();
-      return   Customer.builder()
-              .customer_id(rs.getInt("customer_id"))
-              .first_name(rs.getString("first_name"))
-              .last_name(rs.getString("last_name"))
-              .address(rs.getString("address"))
-              .phone(rs.getString("phone"))
-              .email(rs.getString("email"))
-              .build();
+      return Customer.builder()
+          .customer_id(rs.getInt("customer_id"))
+          .first_name(rs.getString("first_name"))
+          .last_name(rs.getString("last_name"))
+          .address(rs.getString("address"))
+          .phone(rs.getString("phone"))
+          .email(rs.getString("email"))
+          .build();
     }
-
- }
+  }
 
   @Override
   public Customer getCustomerById(int customer_id) {
@@ -70,14 +69,11 @@ public class DefaultCustomerDao implements CustomerDao {
 
     final String sql = "SELECT * FROM customers WHERE customer_id=:customer_id";
 
-    //    SqlParameterSource sqlParams = new MapSqlParameterSource("customer_id", customer_id);
     Map<String, Object> params = new HashMap<>();
     params.put("customer_id", customer_id);
 
-    return jdbcTemplate.query(
-        sql,
-        params, new CustomerResultSetExtractor());
-    }
+    return jdbcTemplate.query(sql, params, new CustomerResultSetExtractor());
+  }
 
   @Override
   public Customer createCustomer(Customer customer) {
@@ -111,8 +107,8 @@ public class DefaultCustomerDao implements CustomerDao {
 
   public Customer updateCustomer(Customer customer) {
     String sql =
-        "UPDATE customers SET customer_Id = :customer_Id, first_name = :first_name, last_name = :last_name,"
-            + "address = :address, phone = :phone, email = :email";
+        "UPDATE customers SET first_name = :first_name, last_name = :last_name,"
+            + "address = :address, phone = :phone, email = :email WHERE customer_id= :customer_id";
     SqlParameterSource sqlParam =
         new MapSqlParameterSource("first_name", customer.getFirst_name())
             .addValue("last_name", customer.getLast_name())
@@ -120,14 +116,20 @@ public class DefaultCustomerDao implements CustomerDao {
             .addValue("phone", customer.getPhone())
             .addValue("email", customer.getEmail());
 
+    Map<String, Object> params = new HashMap<>();
+    params.put("customer_id", customer_id);
+
     int rows = jdbcTemplate.update(sql, sqlParam);
     return customer;
   }
 
-  // public void deleteCustomerById(int customer_id){
-  //    String sql = "Delete FROM customers where customer_id =?";
-  //
-  //
-  // }
+  public void deleteCustomerById(int customer_id) {
+    final String sql = "DELETE FROM customers WHERE customer_id =?";
+    log.debug("I am deleteCustomersById() in dao");
 
+    Map<String, Object> params = new HashMap<>();
+    params.put("customer_id", customer_id);
+
+    //            jdbcTemplate.query(sql, params);
+  }
 }

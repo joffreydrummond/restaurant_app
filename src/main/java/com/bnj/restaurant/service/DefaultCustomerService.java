@@ -26,6 +26,7 @@ public class DefaultCustomerService implements CustomerService {
 
   @Override
   public Customer getCustomerById(int customer_id) {
+    log.debug("I am getCustomersById() in service");
     return customerDao.getCustomerById(customer_id);
   }
 
@@ -37,6 +38,8 @@ public class DefaultCustomerService implements CustomerService {
   }
 
   public Customer updateCustomer(Customer customer){
+    log.debug("I am updateCustomers() in service");
+
     return customerDao.updateCustomer(customer);
   }
 
