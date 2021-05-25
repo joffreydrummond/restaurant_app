@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Slf4j
 @Component
@@ -47,22 +48,30 @@ public class DefaultCustomerDao implements CustomerDao {
   @Override
   public Customer createCustomer(Customer customer) {
     log.debug("I am createCustomers() in dao");
-     final String sql = "INSERT INTO customers (first_name, last_name, address, phone, email) " +
-             "VALUES (:first_name, :last_name, :address, :phone, :email)";
+    final String sql =
+        "INSERT INTO customers (first_name, last_name, address, phone, email) "
+            + "VALUES (:first_name, :last_name, :address, :phone, :email)";
 
-
-SqlParameterSource sqlParam = new MapSqlParameterSource("first_name", customer.getFirst_name())
-        .addValue("last_name", customer.getLast_name())
-        .addValue("address", customer.getAddress())
-        .addValue("phone", customer.getPhone())
-        .addValue("email", customer.getEmail());
+    SqlParameterSource sqlParam =
+        new MapSqlParameterSource("first_name", customer.getFirst_name())
+            .addValue("last_name", customer.getLast_name())
+            .addValue("address", customer.getAddress())
+            .addValue("phone", customer.getPhone())
+            .addValue("email", customer.getEmail());
 
     KeyHolder keyHolder = new GeneratedKeyHolder();
 
+    int customer_id = Objects.requireNonNull(keyHolder.getKey()).intValue();
+
     jdbcTemplate.update(sql, sqlParam, keyHolder);
 
-    return customer;
+    return Customer.builder()
+        .customer_id(customer_id)
+        .first_name(customer.getFirst_name())
+        .last_name(customer.getLast_name())
+        .address(customer.getAddress())
+        .phone(customer.getPhone())
+        .email(customer.getEmail())
+        .build();
   }
-
-
 }
