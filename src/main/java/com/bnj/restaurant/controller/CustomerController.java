@@ -43,4 +43,15 @@ public class CustomerController implements CustomerOperation {
 
     return customerService.updateCustomerById(customer_id, customer);
   }
+
+  @Override
+  @RequestMapping("delete/{customer_id}")
+  public String deleteCustomerById(@PathVariable("customer_id") int customer_id) {
+    log.debug("I am deleteCustomersById() in controller");
+
+    return customerService.deleteCustomerById(customer_id);
+  }
+
+
+
 }

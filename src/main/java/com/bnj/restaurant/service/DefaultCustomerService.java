@@ -44,4 +44,9 @@ public class DefaultCustomerService implements CustomerService {
     return customerDao.updateCustomerById(customer_id, customer);
   }
 
+  @Override
+  public String deleteCustomerById(int customer_id) {
+    return customerDao.deleteCustomerById(customer_id);
+  }
+
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -75,6 +76,26 @@ public class DefaultCustomerDao implements CustomerDao {
     return jdbcTemplate.query(sql, params, new CustomerResultSetExtractor());
   }
 
+  public String deleteCustomerById(int customer_id) {
+
+    //check if customer exists
+    final String sql = "DELETE FROM customers WHERE customer_id =:customer_id";
+    log.debug("I am deleteCustomersById() in dao");
+
+//    SqlParameterSource sqlParam =
+//            new MapSqlParameterSource("customer_id", customer_id);
+
+    Map<String, Object> params = new HashMap<>();
+    params.put("customer_id", customer_id);
+
+//    Object[] params = new Object[]{customer_id};
+
+    jdbcTemplate.update(sql, params);
+
+    return "Customer was deleted";
+  }
+
+
   @Override
   public Customer createCustomer(Customer customer) {
     log.debug("I am createCustomers() in dao");
@@ -122,32 +143,14 @@ public class DefaultCustomerDao implements CustomerDao {
                       .addValue("customer_id", customer_id);
 
 
-
-//      Map<String, Object> params = new HashMap<>();
-//      params.put("customer_id", customer_id);
-
       jdbcTemplate.update(sql, sqlParam);
 
       customerSelected = getCustomerById(customer_id);
 
     }
 
-
-
-//    int rows = jdbcTemplate.update(sql, sqlParam);
-
-
-
     return customerSelected;
   }
 
-  public void deleteCustomerById(int customer_id) {
-    final String sql = "DELETE FROM customers WHERE customer_id =?";
-    log.debug("I am deleteCustomersById() in dao");
 
-    Map<String, Object> params = new HashMap<>();
-    params.put("customer_id", customer_id);
-
-    //            jdbcTemplate.query(sql, params);
-  }
 }

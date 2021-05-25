@@ -102,6 +102,8 @@ public interface CustomerOperation {
   @ResponseStatus(code = HttpStatus.OK)
   List<Customer> getCustomers();
 
+    String deleteCustomerById(int customer_id);
+
 //        @Operation(
 //        summary = "Returns a list of customers",
 //        description = "Returns a list of customers",
