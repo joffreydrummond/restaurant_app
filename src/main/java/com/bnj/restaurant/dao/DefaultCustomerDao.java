@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
@@ -54,7 +56,12 @@ SqlParameterSource sqlParam = new MapSqlParameterSource("first_name", customer.g
         .addValue("address", customer.getAddress())
         .addValue("phone", customer.getPhone())
         .addValue("email", customer.getEmail());
-    return jdbcTemplate.query(sql, (rs, i) -> Customer.builder();
+
+    KeyHolder keyHolder = new GeneratedKeyHolder();
+
+    jdbcTemplate.update(sql, sqlParam);
+
+    return customer;
   }
 
 
