@@ -5,6 +5,8 @@ import com.bnj.restaurant.entity.Customer;
 import com.bnj.restaurant.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,5 +30,11 @@ public class CustomerController implements CustomerOperation{
         log.debug("I am getCustomers() in controller");
 
         return customerService.createCustomer(customer);
+    }
+
+
+    public Customer updateCustomer(@RequestBody  Customer customer) {
+        Customer updatedCustomer = customerService.updateCustomer(customer);
+        return updatedCustomer;
     }
 }

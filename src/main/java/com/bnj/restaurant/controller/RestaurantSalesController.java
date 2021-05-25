@@ -8,9 +8,9 @@ import io.swagger.v3.oas.annotations.servers.Server;
 
 import java.util.List;
 
-@OpenAPIDefinition(
-    info = @Info(title = "BNJ Order Service"),
-    servers = {@Server(url = "http://localhost:8080", description = "Local Server.")})
+//@OpenAPIDefinition(
+   //info = @Info(title = "BNJ Order Service"),
+    //ervers = {@Server(url = "http://localhost:8080", description = "Local Server.")})
 public interface RestaurantSalesController {
 
   List<Food> fetchFoodType(String foodType);

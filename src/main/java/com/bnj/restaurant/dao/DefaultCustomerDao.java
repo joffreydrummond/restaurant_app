@@ -73,5 +73,25 @@ public class DefaultCustomerDao implements CustomerDao {
         .phone(customer.getPhone())
         .email(customer.getEmail())
         .build();
+
   }
+
+  public Customer  updateCustomer(Customer customer) {
+    String sql = "UPDATE customers SET customer_Id = :customer_Id, first_name = :first_name, last_name = :last_name," +
+            "address = :address, phone = :phone, email = :email ";
+    SqlParameterSource sqlParam =
+            new MapSqlParameterSource("first_name", customer.getFirst_name())
+                    .addValue("last_name", customer.getLast_name())
+                    .addValue("address", customer.getAddress())
+                    .addValue("phone", customer.getPhone())
+                    .addValue("email", customer.getEmail());
+
+    int rows = jdbcTemplate.update(sql, sqlParam);
+    return customer;
+
+  }
+
+
+
+
 }

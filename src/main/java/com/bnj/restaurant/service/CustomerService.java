@@ -10,4 +10,6 @@ public interface CustomerService {
   List<Customer> getCustomers();
 
   Customer createCustomer(Customer customer);
+
+  Customer updateCustomer(Customer customer);
 }
