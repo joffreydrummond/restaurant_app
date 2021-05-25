@@ -4,6 +4,8 @@ import com.bnj.restaurant.entity.Customer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -45,6 +48,37 @@ public class DefaultCustomerDao implements CustomerDao {
                 .build());
   }
 
+ class CustomerResultSetExtractor implements ResultSetExtractor <Customer> {
+    @Override
+    public Customer extractData(ResultSet rs) throws SQLException, DataAccessException {
+      rs.next();
+      return   Customer.builder()
+              .customer_id(rs.getInt("customer_id"))
+              .first_name(rs.getString("first_name"))
+              .last_name(rs.getString("last_name"))
+              .address(rs.getString("address"))
+              .phone(rs.getString("phone"))
+              .email(rs.getString("email"))
+              .build();
+    }
+
+ }
+
+  @Override
+  public Customer getCustomerById(int customer_id) {
+    log.debug("I am getCustomersById() in dao");
+
+    final String sql = "SELECT * FROM customers WHERE customer_id=:customer_id";
+
+    //    SqlParameterSource sqlParams = new MapSqlParameterSource("customer_id", customer_id);
+    Map<String, Object> params = new HashMap<>();
+    params.put("customer_id", customer_id);
+
+    return jdbcTemplate.query(
+        sql,
+        params, new CustomerResultSetExtractor());
+    }
+
   @Override
   public Customer createCustomer(Customer customer) {
     log.debug("I am createCustomers() in dao");
@@ -61,9 +95,9 @@ public class DefaultCustomerDao implements CustomerDao {
 
     KeyHolder keyHolder = new GeneratedKeyHolder();
 
-    int customer_id = Objects.requireNonNull(keyHolder.getKey()).intValue();
-
     jdbcTemplate.update(sql, sqlParam, keyHolder);
+
+    int customer_id = Objects.requireNonNull(keyHolder.getKey()).intValue();
 
     return Customer.builder()
         .customer_id(customer_id)
@@ -73,31 +107,27 @@ public class DefaultCustomerDao implements CustomerDao {
         .phone(customer.getPhone())
         .email(customer.getEmail())
         .build();
-
   }
 
-  public Customer  updateCustomer(Customer customer) {
-    String sql = "UPDATE customers SET customer_Id = :customer_Id, first_name = :first_name, last_name = :last_name," +
-            "address = :address, phone = :phone, email = :email";
+  public Customer updateCustomer(Customer customer) {
+    String sql =
+        "UPDATE customers SET customer_Id = :customer_Id, first_name = :first_name, last_name = :last_name,"
+            + "address = :address, phone = :phone, email = :email";
     SqlParameterSource sqlParam =
-            new MapSqlParameterSource("first_name", customer.getFirst_name())
-                    .addValue("last_name", customer.getLast_name())
-                    .addValue("address", customer.getAddress())
-                    .addValue("phone", customer.getPhone())
-                    .addValue("email", customer.getEmail());
+        new MapSqlParameterSource("first_name", customer.getFirst_name())
+            .addValue("last_name", customer.getLast_name())
+            .addValue("address", customer.getAddress())
+            .addValue("phone", customer.getPhone())
+            .addValue("email", customer.getEmail());
 
     int rows = jdbcTemplate.update(sql, sqlParam);
     return customer;
+  }
 
-
-
-}
-
-public void deleteCustomerById(int customer_id){
-    String sql = "Delete FROM customers where customer_id =?";
-
-
-}
-
+  // public void deleteCustomerById(int customer_id){
+  //    String sql = "Delete FROM customers where customer_id =?";
+  //
+  //
+  // }
 
 }

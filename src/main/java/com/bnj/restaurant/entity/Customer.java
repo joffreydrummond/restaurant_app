@@ -2,6 +2,7 @@ package com.bnj.restaurant.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Comparator;
@@ -9,6 +10,7 @@ import java.util.Comparator;
 @Data
 @Builder
 public class Customer implements Comparable<Customer> {
+  @Id
   private int customer_id;
 
   @NotBlank(message = "First name is required")

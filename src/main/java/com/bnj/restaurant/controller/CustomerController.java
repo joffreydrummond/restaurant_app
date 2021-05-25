@@ -5,10 +5,7 @@ import com.bnj.restaurant.entity.Customer;
 import com.bnj.restaurant.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,23 +15,37 @@ public class CustomerController implements CustomerOperation{
     @Autowired
     private CustomerService customerService;
 
-    @RequestMapping
-    @Override
-    public List<Customer> getCustomers() {
-        log.debug("I am getCustomers() in controller");
-        return customerService.getCustomers();
-    }
 
-    @Override
+    @Override @PostMapping
     public Customer createCustomer(Customer customer) {
-        log.debug("I am getCustomers() in controller");
+        log.debug("I am createCustomers() in controller");
 
         return customerService.createCustomer(customer);
     }
 
+    @Override
+    public Customer getCustomerById(int customer_id) {
+        log.debug("I am getCustomersById() in controller");
+
+        return customerService.getCustomerById(customer_id);
+    }
+
+    @Override
+    public List<Customer> getCustomer() {
+        log.debug("I am getCustomers() in controller");
+
+        return customerService.getCustomers();
+    }
+
+//    @RequestMapping
+//    @Override
+//    public List<Customer> getCustomer() {
+//        log.debug("I am getCustomers() in controller");
+//        return customerService.getCustomers();
+//    }
+
 
     public Customer updateCustomer(@RequestBody  Customer customer) {
-        Customer updatedCustomer = customerService.updateCustomer(customer);
-        return updatedCustomer;
+        return customerService.updateCustomer(customer);
     }
 }

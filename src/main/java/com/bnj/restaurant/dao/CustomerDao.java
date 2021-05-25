@@ -5,9 +5,11 @@ import com.bnj.restaurant.entity.Customer;
 import java.util.List;
 
 public interface CustomerDao {
-    List<Customer> getCustomers();
+  List<Customer> getCustomers();
 
-    Customer createCustomer(Customer customer);
+   Customer getCustomerById(int customer_id);
 
-    Customer  updateCustomer(Customer customer);
+  Customer createCustomer(Customer customer);
+
+  Customer updateCustomer(Customer customer);
 }

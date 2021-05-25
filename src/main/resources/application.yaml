@@ -1,1 +1,1 @@
-spring:  datasource:    password: Black#747    username: root    url: jdbc:mysql://localhost:3306/restaurant_db    output:      ansi:        enabled: DETECT logging:  level:    root: warn    com.bnj: debug    web: trace
+spring:  datasource:    password: password    username: restaurant    url: jdbc:mysql://localhost:3306/restaurant_db    output:      ansi:        enabled: DETECT logging:  level:    root: warn    com.bnj: debug    web: trace
