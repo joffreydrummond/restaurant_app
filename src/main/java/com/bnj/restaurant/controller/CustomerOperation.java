@@ -18,7 +18,7 @@ import java.util.List;
 // returns list of customers
 @RequestMapping("/v1/customers")
 @OpenAPIDefinition(
-    info = @Info(title = "Customer API V1"),
+    info = @Info(title = "Customer API"),
     servers = {@Server(url = "http://localhost:8080", description = "Local Server")})
 public interface CustomerOperation {
 
@@ -45,13 +45,6 @@ public interface CustomerOperation {
             responseCode = "500",
             description = "Internal Server Error Occurred",
             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
-      },
-      parameters = {
-        @Parameter(
-            name = "customer_id",
-            allowEmptyValue = false,
-            required = false,
-            description = "The customer id (i.e, '1', '2', '3')"),
       })
   @GetMapping
   @ResponseStatus(code = HttpStatus.OK)
@@ -80,13 +73,6 @@ public interface CustomerOperation {
                             responseCode = "500",
                             description = "Internal Server Error Occurred",
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
-            },
-            parameters = {
-                    @Parameter(
-                            name = "customer_id",
-                            allowEmptyValue = false,
-                            required = false,
-                            description = "The customer id (i.e, '1', '2', '3')"),
             })
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
