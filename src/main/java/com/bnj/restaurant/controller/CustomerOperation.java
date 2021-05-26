@@ -86,21 +86,21 @@ public interface CustomerOperation {
   @ResponseStatus(code = HttpStatus.CREATED)
   Customer getCustomerById(@PathVariable int customer_id);
 
-  @Operation(
-      summary = "Returns a list of customers",
-      description = "Returns a list of customers",
-      responses = {
-        @ApiResponse(
-            responseCode = "200",
-            description = "A list of customers is returned",
-            content =
-                @Content(
-                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                    schema = @Schema(implementation = Customer.class)))
-      })
-  @GetMapping
-  @ResponseStatus(code = HttpStatus.OK)
-  List<Customer> getCustomers();
+//  @Operation(
+//      summary = "Returns a list of customers",
+//      description = "Returns a list of customers",
+//      responses = {
+//        @ApiResponse(
+//            responseCode = "200",
+//            description = "A list of customers is returned",
+//            content =
+//                @Content(
+//                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+//                    schema = @Schema(implementation = Customer.class)))
+//      })
+//  @GetMapping
+//  @ResponseStatus(code = HttpStatus.OK)
+//  List<Customer> getCustomers();
 
     String deleteCustomerById(int customer_id);
 

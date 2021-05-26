@@ -1,7 +1,7 @@
-version: '3.7'
-
+#version: '3.3'
 services:
   db:
+    container_name: restaurant_app
     image: mysql:5.7
     restart: always
     environment:
@@ -17,12 +17,52 @@ services:
       # container cluster can access MySQL within the container on port 8306 and the requests are forwarded to port 3306
       # within the cluster.
       - '8306:3306'
-    expose:
-      # Opens port 3306 on the container
-      - '3306'
-      # Where our data will be persisted
+    networks:
+      - restaurant_db
+#    expose:
+#      # Opens port 3306 on the container
+#      - '3306'
+#      # Where our data will be persisted
+#    volumes:
+#      - my-db:/var/lib/mysql
+### Names our volume
+#volumes:
+#  my-db:
+
+
+    # Flyway is used to create the tables and populate them with data. The migration files are found in
+    # src/functional-test/resources. The schema is applied first to create the tables (V1.0__Jeep_Schema.sql) and
+    # then the data is applied in V1.1__Jeep_Data.sql. Note that these files are also applied for each functional
+    # (integration) test using the @Sql annotation in the functional test classes.
+  flyway:
+    container_name: flyway
+    image: flyway/flyway:latest
+    command: migrate
+
+      # These environment variables are used in ./flyway/conf/flyway.conf to tell Flyway which database to connect to.
+    environment:
+      FLYWAY_URL: jdbc:mysql://db
+      FLYWAY_SCHEMAS: restaurant_db
+      FLYWAY_USER: root
+      FLYWAY_PASSWORD: password
+
+        # Set the retry count to let the database come up before Flyway gives up.
+      FLYWAY_CONNECT_RETRIES: 60
     volumes:
-      - my-db:/var/lib/mysql
-# Names our volume
-volumes:
-  my-db:
+      # Create a volume between ./src/functional-test/resources/flyway/migrations in the host and /flyway/sql in the
+      # container. This allows Flyway to grab the migration files from the default location.
+      - ./src/main/resources/flyway/migrations:/flyway/sql
+
+      # Create a volume between ./src/functional-test/resources/flyway/conf on the host and /flyway/conf in the
+      # container. This allows Flyway to read configuration from the default configuration location.
+      - ./src/main/resources/flyway/conf:/flyway/conf
+    depends_on:
+      - db
+    networks:
+      - restaurant_db
+
+    # Create a bridge network between the MySQL container and the Flyway container.
+networks:
+  restaurant_db:
+    driver: bridge
+    name: restaurant-to-restaurant

@@ -30,12 +30,12 @@ public class CustomerController implements CustomerOperation {
   }
 
 
-  @Override @RequestMapping
-  public List<Customer> getCustomers() {
-    log.debug("I am getCustomers() in controller");
-
-    return customerService.getCustomers();
-  }
+//  @Override @RequestMapping
+//  public List<Customer> getCustomers() {
+//    log.debug("I am getCustomers() in controller");
+//
+//    return customerService.getCustomers();
+//  }
 
   @RequestMapping("/{customer_id}")
   public Customer updateCustomerById(@PathVariable("customer_id")int customer_id, @RequestBody Customer customer) {

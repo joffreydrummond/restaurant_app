@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 //@ActiveProfiles("test")
-//@Sql(scripts = {"classpath:data/restaurant_data.sql", "classpath:data/restaurant_schema.sql"}, config =
+//@Sql(scripts = {"classpath:data/V1.1__Restaurant_Data.sql", "classpath:data/V1.0__Restaurant_Schema.sql"}, config =
 //@SqlConfig(encoding = "utf-8"))
 public class FetchCustomerTest extends FetchCustomerSupport {
 

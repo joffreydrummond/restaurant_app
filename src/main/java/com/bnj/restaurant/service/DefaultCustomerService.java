@@ -15,13 +15,18 @@ public class DefaultCustomerService implements CustomerService {
 
   @Autowired private CustomerDao customerDao;
 
+//  @Override
+//  public List<Customer> getCustomers() {
+//    log.debug("I am getCustomers() in service");
+//    List<Customer> customers = customerDao.getCustomers();
+//    Collections.sort(customers);
+//
+//    return customers;
+//  }
+
   @Override
   public List<Customer> getCustomers() {
-    log.debug("I am getCustomers() in service");
-    List<Customer> customers = customerDao.getCustomers();
-    Collections.sort(customers);
-
-    return customers;
+    return null;
   }
 
   @Override

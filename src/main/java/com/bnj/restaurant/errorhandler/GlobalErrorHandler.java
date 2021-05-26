@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
+
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,7 +18,7 @@ import javax.validation.ConstraintViolationException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
-@Slf4j
+@Slf4j @Hidden
 public class GlobalErrorHandler {
   private enum LogStatus {
     STACK_TRACE, MESSAGE_ONLY
