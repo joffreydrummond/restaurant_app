@@ -60,7 +60,7 @@ public interface FoodOperation {
                             content =
                             @Content(
                                     mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = Customer.class))),
+                                    schema = @Schema(implementation = Food.class))),
                     @ApiResponse(
                             responseCode = "400",
                             description = "The food parameters are not correct",

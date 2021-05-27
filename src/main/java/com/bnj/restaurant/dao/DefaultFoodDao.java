@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Component
@@ -56,6 +58,13 @@ public class DefaultFoodDao implements FoodDao {
 
   @Override
   public Food getFoodById(int food_id) {
-    return null;
+    log.debug("I am getFoodById() in dao");
+
+    final String sql = "SELECT * FROM foods WHERE food_id=:food_id";
+
+    Map<String, Object> params = new HashMap<>();
+    params.put("food_id", food_id);
+
+    return jdbcTemplate.query(sql, params, new DefaultFoodDao.FoodResultSetExtractor());
   }
 }
