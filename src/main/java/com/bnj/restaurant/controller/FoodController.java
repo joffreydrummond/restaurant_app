@@ -13,6 +13,7 @@ public class FoodController  implements FoodOperation{
 
     @Override
     public List<Food> getFoods() {
+        log.debug("I am getFoods() in controller");
         return null;
     }
 }
