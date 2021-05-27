@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface FoodDao {
     List<Food> getFoods();
+
+    Food getFoodById(int food_id);
 }

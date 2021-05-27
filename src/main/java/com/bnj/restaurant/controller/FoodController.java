@@ -19,4 +19,10 @@ public class FoodController implements FoodOperation {
     log.debug("I am getFoods() in controller");
     return foodService.getFoods();
   }
+
+  @Override
+  public Food getFoodById(int food_id) {
+    log.debug("I am getFoodById() in controller");
+    return null;
+  }
 }

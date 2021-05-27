@@ -19,4 +19,10 @@ public class DefaultFoodService implements FoodService{
         log.debug("I am getFoods() in service");
         return foodDao.getFoods();
     }
+
+    @Override
+    public Food getFoodById(int food_id) {
+        log.debug("I am getFoodById() in service");
+        return null;
+    }
 }

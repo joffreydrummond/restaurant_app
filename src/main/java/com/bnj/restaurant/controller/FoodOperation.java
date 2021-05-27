@@ -85,6 +85,5 @@ public interface FoodOperation {
     )
     @GetMapping("/{food_id}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    Customer getFoodById(@PathVariable int food_id);
-    Food getFoodById();
+    Food getFoodById(@PathVariable int food_id);
 }
