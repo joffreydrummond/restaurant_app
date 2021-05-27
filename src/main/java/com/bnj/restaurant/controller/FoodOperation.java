@@ -1,8 +1,10 @@
 package com.bnj.restaurant.controller;
 
+import com.bnj.restaurant.entity.Customer;
 import com.bnj.restaurant.entity.Food;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -11,6 +13,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -47,5 +50,41 @@ public interface FoodOperation {
 
 
 
-
+    @Operation(
+            summary = "Get food by food id",
+            description = "Get food by food id",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "A food is successfully retrieved",
+                            content =
+                            @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = Customer.class))),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "The food parameters are not correct",
+                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "The food was not found by the food id.",
+                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Internal Server Error Occurred",
+                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+            }
+            ,
+            parameters = {
+                    @Parameter(
+                            name = "food_id",
+                            allowEmptyValue = false,
+                            required = false,
+                            description = "The food id (i.e, '1', '2', '3')")
+            }
+    )
+    @GetMapping("/{food_id}")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    Customer getFoodById(@PathVariable int food_id);
+    Food getFoodById();
 }
