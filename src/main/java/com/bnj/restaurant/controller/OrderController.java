@@ -11,6 +11,8 @@ import java.util.List;
 public class OrderController implements OrderOperation{
     @Override
     public List<Order> getOrders() {
+        log.debug("I am getOrders() in controller");
+
         return null;
     }
 }
