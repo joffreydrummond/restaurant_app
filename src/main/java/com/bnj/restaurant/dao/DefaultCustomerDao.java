@@ -29,25 +29,23 @@ public class DefaultCustomerDao implements CustomerDao {
 
   @Autowired private NamedParameterJdbcTemplate jdbcTemplate;
 
-//  @Override
-//  public List<Customer> getCustomers() {
-//    log.debug("I am getCustomers() in dao");
-//
-//    final String sql = "SELECT * FROM customers";
-//    return
-//    //            null;
-//    jdbcTemplate.query(
-//        sql,
-//        (rs, i) ->
-//            Customer.builder()
-//                .customer_id(rs.getInt("customer_id"))
-//                .first_name(rs.getString("first_name"))
-//                .last_name(rs.getString("last_name"))
-//                .address(rs.getString("address"))
-//                .phone(rs.getString("phone"))
-//                .email(rs.getString("email"))
-//                .build());
-//  }
+  @Override
+  public List<Customer> getCustomers() {
+    log.debug("I am getCustomers() in dao");
+
+    final String sql = "SELECT * FROM customers";
+    return jdbcTemplate.query(
+        sql,
+        (rs, i) ->
+            Customer.builder()
+                .customer_id(rs.getInt("customer_id"))
+                .first_name(rs.getString("first_name"))
+                .last_name(rs.getString("last_name"))
+                .address(rs.getString("address"))
+                .phone(rs.getString("phone"))
+                .email(rs.getString("email"))
+                .build());
+  }
 
   class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
     @Override
@@ -78,23 +76,17 @@ public class DefaultCustomerDao implements CustomerDao {
 
   public String deleteCustomerById(int customer_id) {
 
-    //check if customer exists
+    // check if customer exists
     final String sql = "DELETE FROM customers WHERE customer_id =:customer_id";
     log.debug("I am deleteCustomersById() in dao");
 
-//    SqlParameterSource sqlParam =
-//            new MapSqlParameterSource("customer_id", customer_id);
-
     Map<String, Object> params = new HashMap<>();
     params.put("customer_id", customer_id);
-
-//    Object[] params = new Object[]{customer_id};
 
     jdbcTemplate.update(sql, params);
 
     return "Customer was deleted";
   }
-
 
   @Override
   public Customer createCustomer(Customer customer) {
@@ -126,7 +118,7 @@ public class DefaultCustomerDao implements CustomerDao {
         .build();
   }
 
-  public Customer updateCustomerById(int customer_id, Customer customer) { //tried to
+  public Customer updateCustomerById(int customer_id, Customer customer) { // tried to
     String sql =
         "UPDATE customers SET first_name = :first_name, last_name = :last_name,"
             + "address = :address, phone = :phone, email = :email WHERE customer_id= :customer_id";
@@ -135,22 +127,16 @@ public class DefaultCustomerDao implements CustomerDao {
 
     if (customerSelected != null) {
       SqlParameterSource sqlParam =
-              new MapSqlParameterSource("first_name", customer.getFirst_name())
-                      .addValue("last_name", customer.getLast_name())
-                      .addValue("address", customer.getAddress())
-                      .addValue("phone", customer.getPhone())
-                      .addValue("email", customer.getEmail())
-                      .addValue("customer_id", customer_id);
-
-
+          new MapSqlParameterSource("first_name", customer.getFirst_name())
+              .addValue("last_name", customer.getLast_name())
+              .addValue("address", customer.getAddress())
+              .addValue("phone", customer.getPhone())
+              .addValue("email", customer.getEmail())
+              .addValue("customer_id", customer_id);
       jdbcTemplate.update(sql, sqlParam);
 
       customerSelected = getCustomerById(customer_id);
-
     }
-
     return customerSelected;
   }
-
-
 }

@@ -30,14 +30,14 @@ public class CustomerController implements CustomerOperation {
   }
 
 
-//  @Override @RequestMapping
-//  public List<Customer> getCustomers() {
-//    log.debug("I am getCustomers() in controller");
-//
-//    return customerService.getCustomers();
-//  }
+  @Override
+  public List<Customer> getCustomers() {
+    log.debug("I am getCustomers() in controller");
 
-  @RequestMapping("/{customer_id}")
+    return customerService.getCustomers();
+  }
+
+//  @RequestMapping("/{customer_id}")
   public Customer updateCustomerById(@PathVariable("customer_id")int customer_id, @RequestBody Customer customer) {
     log.debug("I am updateCustomers() in controller");
 
@@ -45,7 +45,6 @@ public class CustomerController implements CustomerOperation {
   }
 
   @Override
-  @RequestMapping("delete/{customer_id}")
   public String deleteCustomerById(@PathVariable("customer_id") int customer_id) {
     log.debug("I am deleteCustomersById() in controller");
 

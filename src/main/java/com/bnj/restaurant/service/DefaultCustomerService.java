@@ -15,18 +15,12 @@ public class DefaultCustomerService implements CustomerService {
 
   @Autowired private CustomerDao customerDao;
 
-//  @Override
-//  public List<Customer> getCustomers() {
-//    log.debug("I am getCustomers() in service");
-//    List<Customer> customers = customerDao.getCustomers();
-//    Collections.sort(customers);
-//
-//    return customers;
-//  }
-
   @Override
   public List<Customer> getCustomers() {
-    return null;
+    log.debug("I am getCustomers() in service");
+    List<Customer> customers = customerDao.getCustomers();
+    Collections.sort(customers);
+    return customers;
   }
 
   @Override
@@ -38,14 +32,12 @@ public class DefaultCustomerService implements CustomerService {
   @Override
   public Customer createCustomer(Customer customer) {
     log.debug("I am createCustomers() in service");
-
     return customerDao.createCustomer(customer);
   }
 
   @Override
-  public Customer updateCustomerById(int customer_id, Customer customer){
+  public Customer updateCustomerById(int customer_id, Customer customer) {
     log.debug("I am updateCustomers() in service");
-
     return customerDao.updateCustomerById(customer_id, customer);
   }
 
@@ -53,5 +45,4 @@ public class DefaultCustomerService implements CustomerService {
   public String deleteCustomerById(int customer_id) {
     return customerDao.deleteCustomerById(customer_id);
   }
-
 }

@@ -15,6 +15,12 @@
   <description>app for restaurant</description>
   <properties>
     <java.version>11</java.version>
+    <flyway.user>root</flyway.user>
+    <flyway.password>password</flyway.password>
+    <flyway.schemas>restaurant_db</flyway.schemas>
+
+
+
   </properties>
   <dependencies>
     <dependency>
