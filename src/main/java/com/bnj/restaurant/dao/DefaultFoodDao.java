@@ -12,6 +12,7 @@ public class DefaultFoodDao implements FoodDao {
 
   @Override
   public List<Food> getFoods() {
+    log.debug("I am getFoods() in dao");
     return null;
   }
 }
