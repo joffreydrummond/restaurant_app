@@ -96,7 +96,15 @@ public interface CustomerOperation {
             content =
                 @Content(
                     mediaType = MediaType.APPLICATION_JSON_VALUE,
-                    schema = @Schema(implementation = Customer.class)))
+                    schema = @Schema(implementation = Customer.class))),
+              @ApiResponse(
+                      responseCode = "404",
+                      description = "The requested URL was not found.",
+                      content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+              @ApiResponse(
+                      responseCode = "500",
+                      description = "Internal Server Error Occurred",
+                      content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE))
       })
   @GetMapping
   @ResponseStatus(code = HttpStatus.OK)
