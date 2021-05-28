@@ -13,7 +13,9 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Component
@@ -58,6 +60,11 @@ public class DefaultOrderDao implements OrderDao {
   @Override
   public Orders getOrderById(int order_id) {
     log.debug("I am getOrderById() in dao");
-    return null;
+    final String sql = "SELECT * FROM orders WHERE order_id=:order_id";
+
+    Map<String, Object> params = new HashMap<>();
+    params.put("order_id", order_id);
+
+    return jdbcTemplate.query(sql, params, new DefaultOrderDao.OrderResultSetExtractor());
   }
 }
