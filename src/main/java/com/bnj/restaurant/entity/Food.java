@@ -14,4 +14,5 @@ public class Food {
     private boolean is_gluten_free;
     private boolean is_vegan;
     private BigDecimal price;
+    private FoodTypes food_type;
 }
