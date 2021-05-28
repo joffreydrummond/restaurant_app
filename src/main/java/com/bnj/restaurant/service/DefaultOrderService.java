@@ -23,7 +23,14 @@ public class DefaultOrderService implements OrderService{
     }
 
     @Override
-    public List<OrderTypes> orderTypes() {
+    public Orders getOrderById(int order_id) {
+        log.debug("I am getOrderById() in service");
+
         return null;
     }
+
+//    @Override
+//    public List<OrderTypes> orderTypes() {
+//        return null;
+//    }
 }

@@ -2,6 +2,7 @@ package com.bnj.restaurant.dao;
 
 import com.bnj.restaurant.entity.Customer;
 import com.bnj.restaurant.entity.Food;
+import com.bnj.restaurant.entity.FoodTypes;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -32,7 +33,7 @@ public class DefaultFoodDao implements FoodDao {
             Food.builder()
                 .food_id(rs.getInt("food_id"))
                 .food_name(rs.getString("food_name"))
-                //                .food_type(rs.getString("food_type"))
+                .food_type(FoodTypes.valueOf(rs.getString("food_type")))
                 .description(rs.getString("description"))
                 .is_gluten_free(rs.getBoolean("is_gluten_free"))
                 .is_vegan(rs.getBoolean("is_vegan"))
@@ -40,14 +41,14 @@ public class DefaultFoodDao implements FoodDao {
                 .build());
   }
 
-  class FoodResultSetExtractor implements ResultSetExtractor<Food> {
+  static class FoodResultSetExtractor implements ResultSetExtractor<Food> {
     @Override
     public Food extractData(ResultSet rs) throws SQLException, DataAccessException {
       rs.next();
       return Food.builder()
           .food_id(rs.getInt("food_id"))
           .food_name(rs.getString("food_name"))
-          //              .food_type(rs.getString("food_type"))
+          .food_type(FoodTypes.valueOf(rs.getString("food_type")))
           .description(rs.getString("description"))
           .is_gluten_free(rs.getBoolean("is_gluten_free"))
           .is_vegan(rs.getBoolean("is_vegan"))
@@ -65,6 +66,6 @@ public class DefaultFoodDao implements FoodDao {
     Map<String, Object> params = new HashMap<>();
     params.put("food_id", food_id);
 
-    return jdbcTemplate.query(sql, params, new DefaultFoodDao.FoodResultSetExtractor());
+    return jdbcTemplate.query(sql, params, new FoodResultSetExtractor());
   }
 }

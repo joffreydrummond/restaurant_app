@@ -47,7 +47,7 @@ public class DefaultCustomerDao implements CustomerDao {
                 .build());
   }
 
-  class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
+  static class CustomerResultSetExtractor implements ResultSetExtractor<Customer> {
     @Override
     public Customer extractData(ResultSet rs) throws SQLException, DataAccessException {
       rs.next();

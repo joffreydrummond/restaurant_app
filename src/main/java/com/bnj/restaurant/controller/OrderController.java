@@ -21,4 +21,11 @@ public class OrderController implements OrderOperation{
 
         return orderService.getOrders();
     }
+
+    @Override
+    public Orders getOrderById(int order_id) {
+        log.debug("I am getOrderById() in controller");
+
+        return null;
+    }
 }
