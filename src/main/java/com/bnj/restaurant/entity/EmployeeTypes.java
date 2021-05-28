@@ -1,5 +1,8 @@
 package com.bnj.restaurant.entity;
 
 public enum EmployeeTypes {
-    MANAGER, STAFF
+    MANAGER, STAFF;
+
+    private String enumValue;
+
 }

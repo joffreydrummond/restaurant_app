@@ -1,6 +1,6 @@
 package com.bnj.restaurant.controller;
 
-import com.bnj.restaurant.entity.Food;
+import com.bnj.restaurant.entity.Orders;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -45,5 +45,5 @@ public interface OrderOperation {
             })
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
-    List<Order> getOrders();
+    List<Orders> getOrders();
 }

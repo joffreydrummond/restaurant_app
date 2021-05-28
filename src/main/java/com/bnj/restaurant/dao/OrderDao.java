@@ -1,10 +1,10 @@
 package com.bnj.restaurant.dao;
 
-import org.springframework.core.annotation.Order;
+import com.bnj.restaurant.entity.Orders;
 
 import java.util.List;
 
 public interface OrderDao {
 
-    List<Order> getOrders();
+    List<Orders> getOrders();
 }
