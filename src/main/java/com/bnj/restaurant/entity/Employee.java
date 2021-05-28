@@ -11,4 +11,5 @@ public class Employee {
 //    private String role; need to add to schema
     private int order_id;
     private boolean order_filled;
+    private EmployeeTypes emp_type;
 }
