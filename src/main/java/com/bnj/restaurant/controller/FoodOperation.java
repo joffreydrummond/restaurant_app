@@ -112,8 +112,7 @@ public interface FoodOperation {
                     @Parameter(
                             name = "food_type",
                             allowEmptyValue = false,
-                            required = false,
-                            description = "The food type (i.e, ENTREE, APPETIZER, DESSERT, DRINK, ALCOHOL)")
+                            required = false)
             }
     )
     @GetMapping("type/{food_type}")
