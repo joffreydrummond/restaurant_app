@@ -55,7 +55,7 @@ public interface OrderOperation {
             description = "Get order by order id",
             responses = {
                     @ApiResponse(
-                            responseCode = "200",
+                            responseCode = "201",
                             description = "An order is successfully retrieved",
                             content =
                             @Content(

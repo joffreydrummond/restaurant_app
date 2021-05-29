@@ -55,7 +55,7 @@ public interface FoodOperation {
             description = "Get food by food id",
             responses = {
                     @ApiResponse(
-                            responseCode = "200",
+                            responseCode = "201",
                             description = "A food is successfully retrieved",
                             content =
                             @Content(

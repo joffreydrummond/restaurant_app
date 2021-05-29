@@ -11,7 +11,9 @@ public interface CustomerDao {
 
   Customer createCustomer(Customer customer);
 
-  Customer updateCustomerById(int customer_id, Customer customer);
+//    Customer createCustomer(Customer customer);
+
+    Customer updateCustomerById(int customer_id, Customer customer);
 
   String deleteCustomerById(int customer_id);
 }
