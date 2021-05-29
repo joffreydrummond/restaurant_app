@@ -19,7 +19,7 @@ public class FoodController implements FoodOperation {
 
   @Override
   public List<Food> getFoods(FoodTypes food_type) {
-    log.debug("I am getFoods() in controller");
+    log.debug("I am getFoods(food_type) in controller");
     return foodService.getFoods(food_type);
   }
 
