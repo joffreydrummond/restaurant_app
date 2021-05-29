@@ -23,17 +23,14 @@ public class FoodController implements FoodOperation {
     return foodService.getFoods(food_type);
   }
 
-//  @Override
-//  public List<Food> getFoods() {
-//    log.debug("I am getFoods() in controller");
-//
-//    return foodService.getFoods();
-//  }
+  @Override
+  public List<Food> getFoods() {
+    log.debug("I am getFoods() in controller");
 
-//  @Override
-//  public List<Food> getFoods() {
-//    return null;
-//  }
+    return foodService.getFoods();
+  }
+
+
 
   @Override
   public Food getFoodById(int food_id) {
@@ -41,23 +38,6 @@ public class FoodController implements FoodOperation {
     return foodService.getFoodById(food_id);
   }
 
-//  @Override
-//  public List<Food> getFoods(FoodTypes foodType) {
-//        log.debug("I am getFoodByType() in controller");
-//
-//    return null;
-//  }
 
-//  @Override
-//  public Food getFoodByType( Food food_type) {
-//    log.debug("I am getFoodByType() in controller");
-//    return foodService.getFoodByType(food_type);
-//  }
-
-//  @Override
-//  public List<Food> getFoodBysType( Food food_type) {
-//    log.debug("I am getFoodsByType() in controller");
-//    return foodService.getFoodsByType(food_type);
-//  }
 
 }
