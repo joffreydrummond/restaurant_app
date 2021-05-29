@@ -9,5 +9,5 @@ public interface OrderService {
     List<Orders> getOrders();
     Orders getOrderById(int order_id);
 
-//    List<OrderTypes> orderTypes();
+
 }

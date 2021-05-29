@@ -2,6 +2,7 @@ package com.bnj.restaurant.service;
 
 import com.bnj.restaurant.dao.FoodDao;
 import com.bnj.restaurant.entity.Food;
+import com.bnj.restaurant.entity.FoodTypes;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,11 @@ public class DefaultFoodService implements FoodService{
     public Food getFoodById(int food_id) {
         log.debug("I am getFoodById() in service");
         return foodDao.getFoodById(food_id);
+    }
+
+    @Override
+    public Food getFoodByType(Food food_type) {
+        log.debug("I am getFoodByType() in service");
+        return foodDao.getFoodByType(food_type);
     }
 }

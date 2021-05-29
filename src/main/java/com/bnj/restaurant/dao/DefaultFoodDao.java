@@ -1,6 +1,5 @@
 package com.bnj.restaurant.dao;
 
-import com.bnj.restaurant.entity.Customer;
 import com.bnj.restaurant.entity.Food;
 import com.bnj.restaurant.entity.FoodTypes;
 import lombok.extern.slf4j.Slf4j;
@@ -65,6 +64,18 @@ public class DefaultFoodDao implements FoodDao {
 
     Map<String, Object> params = new HashMap<>();
     params.put("food_id", food_id);
+
+    return jdbcTemplate.query(sql, params, new FoodResultSetExtractor());
+  }
+
+  @Override
+  public Food getFoodByType(Food food_type) {
+    log.debug("I am getFoodByType() in dao");
+
+    final String sql = "SELECT * FROM foods WHERE food_type=:food_type";
+
+    Map<String, Object> params = new HashMap<>();
+    params.put("food_type", food_type);
 
     return jdbcTemplate.query(sql, params, new FoodResultSetExtractor());
   }

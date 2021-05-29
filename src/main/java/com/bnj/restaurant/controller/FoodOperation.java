@@ -119,9 +119,9 @@ public interface FoodOperation {
                             description = "The food type (i.e, ENTREE, APPETIZER, DESSERT, DRINK, ALCOHOL)")
             }
     )
-    @GetMapping("/{food_type}")
+    @GetMapping("type/{food_type}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    Food getFoodByType(FoodTypes food_type);
+    Food getFoodByType(@PathVariable Food food_type);
 
 
 }
