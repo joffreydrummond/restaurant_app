@@ -77,6 +77,20 @@ public class DefaultFoodDao implements FoodDao {
     Map<String, Object> params = new HashMap<>();
     params.put("food_type", food_type);
 
-    return jdbcTemplate.query(sql, params, new FoodResultSetExtractor());
+    return  jdbcTemplate.query(sql, params, new FoodResultSetExtractor());
   }
+
+//  @Override
+//  public List<Food> getFoodsByType(Food food_type) {
+//    log.debug("I am getFoodsByType() in dao");
+//
+//    final String sql = "SELECT * FROM foods WHERE food_type=:food_type";
+//
+//    Map<String, Object> params = new HashMap<>();
+//    params.put("food_type", food_type);
+//
+//    return jdbcTemplate.query(sql, params, new FoodResultSetExtractor());
+//  }
+
+
 }

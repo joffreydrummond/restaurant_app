@@ -13,10 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -87,12 +84,12 @@ public interface FoodOperation {
     Food getFoodById(@PathVariable int food_id);
 
     @Operation(
-            summary = "Get food type by food type",
-            description = "Get food type by food type",
+            summary = "Get foods by food type",
+            description = "Get foods by food type",
             responses = {
                     @ApiResponse(
                             responseCode = "201",
-                            description = "A food type is successfully retrieved",
+                            description = "A list of food type is successfully retrieved",
                             content =
                             @Content(
                                     mediaType = MediaType.APPLICATION_JSON_VALUE,
@@ -103,7 +100,7 @@ public interface FoodOperation {
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
                     @ApiResponse(
                             responseCode = "404",
-                            description = "The food type was not found by the food type you entered.",
+                            description = "The food was not found by the food type you entered.",
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
                     @ApiResponse(
                             responseCode = "500",
@@ -119,9 +116,11 @@ public interface FoodOperation {
                             description = "The food type (i.e, ENTREE, APPETIZER, DESSERT, DRINK, ALCOHOL)")
             }
     )
-    @GetMapping("type/{food_type}")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    Food getFoodByType(@PathVariable Food food_type);
+    List<Food> getFoods(@RequestParam("food_type") FoodTypes foodType);
+//    @GetMapping("type/{food_type}")
+//    @ResponseStatus(code = HttpStatus.CREATED)
+//    Food getFoodByType(@PathVariable Food food_type);
+////    List<Food> getFoodByType(@PathVariable Food food_type);
 
 
 }

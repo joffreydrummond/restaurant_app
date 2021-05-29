@@ -18,8 +18,15 @@ public class FoodController implements FoodOperation {
   @Autowired private FoodService foodService;
 
   @Override
+  public List<Food> getFoods(FoodTypes food_type) {
+    log.debug("I am getFoods() in controller");
+    return foodService.getFoods(food_type);
+  }
+
+  @Override
   public List<Food> getFoods() {
     log.debug("I am getFoods() in controller");
+
     return foodService.getFoods();
   }
 
@@ -29,9 +36,23 @@ public class FoodController implements FoodOperation {
     return foodService.getFoodById(food_id);
   }
 
-  @Override
-  public Food getFoodByType( Food food_type) {
-    log.debug("I am getFoodByType() in controller");
-    return foodService.getFoodByType(food_type);
-  }
+//  @Override
+//  public List<Food> getFoods(FoodTypes foodType) {
+//        log.debug("I am getFoodByType() in controller");
+//
+//    return null;
+//  }
+
+//  @Override
+//  public Food getFoodByType( Food food_type) {
+//    log.debug("I am getFoodByType() in controller");
+//    return foodService.getFoodByType(food_type);
+//  }
+
+//  @Override
+//  public List<Food> getFoodBysType( Food food_type) {
+//    log.debug("I am getFoodsByType() in controller");
+//    return foodService.getFoodsByType(food_type);
+//  }
+
 }

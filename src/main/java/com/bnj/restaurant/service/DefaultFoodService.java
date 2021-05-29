@@ -22,14 +22,29 @@ public class DefaultFoodService implements FoodService{
     }
 
     @Override
+    public List<Food> getFoods(FoodTypes food_type) {
+        return foodDao.getFoods();
+    }
+
+//    @Override
+//    public List<Food> getFoods(FoodTypes food_type) {
+//                log.debug("I am getFoodByType() in service");
+//
+//        return foodDao.getFoods(food_type);
+//    }
+
+    @Override
     public Food getFoodById(int food_id) {
         log.debug("I am getFoodById() in service");
         return foodDao.getFoodById(food_id);
     }
 
-    @Override
-    public Food getFoodByType(Food food_type) {
-        log.debug("I am getFoodByType() in service");
-        return foodDao.getFoodByType(food_type);
-    }
+//    @Override
+//    public Food getFoodByType(Food food_type) {
+//        log.debug("I am getFoodByType() in service");
+//        return foodDao.getFoodByType(food_type);
+//    }
+
+//s
+
 }
