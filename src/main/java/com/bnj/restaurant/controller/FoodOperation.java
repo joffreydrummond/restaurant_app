@@ -2,6 +2,7 @@ package com.bnj.restaurant.controller;
 
 import com.bnj.restaurant.entity.Customer;
 import com.bnj.restaurant.entity.Food;
+import com.bnj.restaurant.entity.FoodTypes;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -48,8 +49,6 @@ public interface FoodOperation {
     @ResponseStatus(code = HttpStatus.OK)
     List<Food> getFoods();
 
-
-
     @Operation(
             summary = "Get food by food id",
             description = "Get food by food id",
@@ -86,4 +85,43 @@ public interface FoodOperation {
     @GetMapping("/{food_id}")
     @ResponseStatus(code = HttpStatus.CREATED)
     Food getFoodById(@PathVariable int food_id);
+
+    @Operation(
+            summary = "Get food type by food type",
+            description = "Get food type by food type",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "201",
+                            description = "A food type is successfully retrieved",
+                            content =
+                            @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = Food.class))),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "The food type parameters are not correct",
+                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "The food type was not found by the food type you entered.",
+                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Internal Server Error Occurred",
+                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+            }
+            ,
+            parameters = {
+                    @Parameter(
+                            name = "food_type",
+                            allowEmptyValue = false,
+                            required = false,
+                            description = "The food type (i.e, ENTREE, APPETIZER, DESSERT, DRINK, ALCOHOL)")
+            }
+    )
+    @GetMapping("/{food_type}")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    Food getFoodByType(FoodTypes food_type);
+
+
 }

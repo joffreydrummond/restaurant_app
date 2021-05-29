@@ -1,6 +1,7 @@
 package com.bnj.restaurant.controller;
 
 import com.bnj.restaurant.entity.Food;
+import com.bnj.restaurant.entity.FoodTypes;
 import com.bnj.restaurant.service.FoodService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,11 @@ public class FoodController implements FoodOperation {
   public Food getFoodById(int food_id) {
     log.debug("I am getFoodById() in controller");
     return foodService.getFoodById(food_id);
+  }
+
+  @Override
+  public Food getFoodByType(FoodTypes food_type) {
+    log.debug("I am getFoodById() in controller");
+    return null;
   }
 }
