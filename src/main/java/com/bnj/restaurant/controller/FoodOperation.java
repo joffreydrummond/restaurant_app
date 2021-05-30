@@ -117,7 +117,7 @@ public interface FoodOperation {
     )
     @GetMapping("/{food_type}")
     @ResponseStatus(code = HttpStatus.OK)
-List<Food> getFoods(@PathVariable FoodTypes food_type);
+List<Food> getFoods(@RequestParam(required = false, value ="food_type") FoodTypes food_type);
 
 
 }
