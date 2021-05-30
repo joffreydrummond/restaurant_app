@@ -28,7 +28,7 @@ public class DefaultFoodDao implements FoodDao {
     log.debug("I am getFoods() in dao");
     return jdbcTemplate.query(
         sql,
-        (rs, i) ->
+        (ResultSet rs, int i) ->
             Food.builder()
                 .food_id(rs.getInt("food_id"))
                 .food_name(rs.getString("food_name"))
@@ -68,31 +68,8 @@ public class DefaultFoodDao implements FoodDao {
     return jdbcTemplate.query(sql, params, new FoodResultSetExtractor());
   }
 
+
   @Override
-  public Food getFoodByType(Food food_type) {
-    log.debug("I am getFoods(food_type) in dao");
-
-    final String sql = "SELECT * FROM foods WHERE food_type=:food_type";
-
-    Map<String, Object> params = new HashMap<>();
-    params.put("food_type", food_type);
-
-    return null;
-//    return jdbcTemplate.query(
-//            sql,
-//            (rs, i) ->
-//                    Food.builder()
-//                            .food_id(rs.getInt("food_id"))
-//                            .food_name(rs.getString("food_name"))
-//                            .food_type(FoodTypes.valueOf(rs.getString("food_type")))
-//                            .description(rs.getString("description"))
-//                            .is_gluten_free(rs.getBoolean("is_gluten_free"))
-//                            .is_vegan(rs.getBoolean("is_vegan"))
-//                            .price(rs.getBigDecimal("price"))
-//                            .build());
-  }
-
-//  @Override
   public List<Food> getFoods(FoodTypes food_type) {
     log.debug("I am getFoods(food_type) in dao");
 
@@ -102,8 +79,8 @@ public class DefaultFoodDao implements FoodDao {
     params.put("food_type", food_type);
 
     return jdbcTemplate.query(
-            sql,
-            (rs, i) ->
+            sql, params,
+            (ResultSet rs, int i) ->
                     Food.builder()
                             .food_id(rs.getInt("food_id"))
                             .food_name(rs.getString("food_name"))
