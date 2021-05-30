@@ -30,11 +30,11 @@ public class FoodController implements FoodOperation {
     return foodList;
   }
 
-//  @Override
-//  public List<Food> getFoods() {
-//    log.debug("I am getFoods() in controller");
-//    return foodService.getFoods();
-//  }
+  @Override
+  public List<Food> getFoods() {
+    log.debug("I am getFoods() in controller");
+    return foodService.getFoods();
+  }
 
 
 
