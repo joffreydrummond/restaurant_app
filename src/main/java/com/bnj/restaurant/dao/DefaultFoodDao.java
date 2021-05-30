@@ -72,6 +72,7 @@ public class DefaultFoodDao implements FoodDao {
   @Override
   public List<Food> getFoods(FoodTypes food_type) {
     log.debug("I am getFoods(food_type) in dao");
+    log.debug("food_type is " + food_type);
 
     final String sql = "SELECT * FROM foods WHERE food_type=:food_type";
 

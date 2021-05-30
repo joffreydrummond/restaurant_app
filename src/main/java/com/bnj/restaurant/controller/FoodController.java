@@ -21,7 +21,7 @@ public class FoodController implements FoodOperation {
   @Override
   public List<Food> getFoods(FoodTypes food_type) {
     log.debug("I am getFoods(food_type) in controller");
-    List<Food> foodList = new ArrayList<>();
+    List<Food> foodList;
     if (food_type != null) {
       foodList = foodService.getFoods(food_type);
     } else {
