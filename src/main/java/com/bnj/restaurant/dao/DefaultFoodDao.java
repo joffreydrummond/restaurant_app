@@ -68,7 +68,6 @@ public class DefaultFoodDao implements FoodDao {
     return jdbcTemplate.query(sql, params, new FoodResultSetExtractor());
   }
 
-
   @Override
   public List<Food> getFoods(FoodTypes food_type) {
     log.debug("I am getFoods(food_type) in dao");

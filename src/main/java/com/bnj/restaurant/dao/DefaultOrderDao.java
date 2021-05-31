@@ -41,7 +41,7 @@ public class DefaultOrderDao implements OrderDao {
                 .order_id(rs.getInt("order_id"))
                 .customer_id(rs.getInt("customer_id"))
                 .price(rs.getBigDecimal("price"))
-                .order_date(rs.getString("order_date"))
+                .order_date(rs.getDate("order_date"))
                 .order_filled(rs.getBoolean("order_filled"))
                 .order_type(OrderTypes.valueOf(rs.getString("order_type")))
                 .build());
@@ -55,7 +55,7 @@ public class DefaultOrderDao implements OrderDao {
           .order_id(rs.getInt("order_id"))
           .customer_id(rs.getInt("customer_id"))
           .price(rs.getBigDecimal("price"))
-          .order_date(rs.getString("order_date"))
+          .order_date(rs.getDate("order_date"))
           .order_filled(rs.getBoolean("order_filled"))
           .order_type(OrderTypes.valueOf(rs.getString("order_type")))
           .build();
@@ -73,12 +73,17 @@ public class DefaultOrderDao implements OrderDao {
     return jdbcTemplate.query(sql, params, new DefaultOrderDao.OrderResultSetExtractor());
   }
 
+
+
   @Override
   public Orders createOrder(Orders order) {
     log.debug("I am createOrder() in dao");
     final String sql =
         "INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) "
             + "VALUES (:price, :order_date, :order_filled, :order_type, :customer_id)";
+
+//    Map<String, Object> params = new HashMap<>();
+////    params.put("customer_id", customer_id);
 
     SqlParameterSource sqlParam =
         new MapSqlParameterSource("price", order.getPrice())
