@@ -8,7 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
@@ -74,6 +76,13 @@ public class DefaultOrderDao implements OrderDao {
     final String sql =
             "INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) "
                     + "VALUES (:price, :order_date, :order_filled, :order_type, :customer_id)";
+
+    SqlParameterSource sqlParam =
+            new MapSqlParameterSource("price", order.getPrice())
+                    .addValue("order_date", order.getOrder_date())
+                    .addValue("order_filled", order.isOrder_filled())
+                    .addValue("order_type", order.getOrder_type())
+                    .addValue("customer_id", order.getCustomer_id());
 
     return null;
   }
