@@ -1,5 +1,6 @@
 package com.bnj.restaurant.controller;
 
+import com.bnj.restaurant.entity.Customer;
 import com.bnj.restaurant.entity.Food;
 import com.bnj.restaurant.entity.Orders;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -13,10 +14,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -86,4 +84,34 @@ public interface OrderOperation {
     @GetMapping("/{order_id}")
     @ResponseStatus(code = HttpStatus.CREATED)
     Orders getOrderById(@PathVariable int order_id);
+
+    @Operation(
+            summary = "Creates a new order",
+            description = "Creates a new order",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "201",
+                            description = "A new customer is successfully created",
+                            content =
+                            @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = Order.class))),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "The customer parameters are not correct",
+                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "The customer was not found.",
+                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Internal Server Error Occurred",
+                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+            })
+    @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
+    Order createOrder(@RequestBody Order order);
+
+
 }

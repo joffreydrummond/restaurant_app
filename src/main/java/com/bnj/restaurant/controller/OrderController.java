@@ -4,6 +4,7 @@ import com.bnj.restaurant.entity.Orders;
 import com.bnj.restaurant.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,6 +27,11 @@ public class OrderController implements OrderOperation{
     public Orders getOrderById(int order_id) {
         log.debug("I am getOrderById() in controller");
 
+        return null;
+    }
+
+    @Override
+    public Order createOrder(Order order) {
         return null;
     }
 }
