@@ -9,4 +9,5 @@ public interface OrderDao {
     List<Orders> getOrders();
 
     Orders getOrderById(int order_id);
+    Orders createOrder(Orders order);
 }

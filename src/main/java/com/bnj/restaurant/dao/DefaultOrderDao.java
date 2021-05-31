@@ -67,4 +67,10 @@ public class DefaultOrderDao implements OrderDao {
 
     return jdbcTemplate.query(sql, params, new DefaultOrderDao.OrderResultSetExtractor());
   }
+
+  @Override
+  public Orders createOrder(Orders order) {
+    log.debug("I am createOrder() in dao");
+    return null;
+  }
 }
