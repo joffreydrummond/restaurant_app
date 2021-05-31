@@ -71,6 +71,10 @@ public class DefaultOrderDao implements OrderDao {
   @Override
   public Orders createOrder(Orders order) {
     log.debug("I am createOrder() in dao");
+    final String sql =
+            "INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) "
+                    + "VALUES (:price, :order_date, :order_filled, :order_type, :customer_id)";
+
     return null;
   }
 }
