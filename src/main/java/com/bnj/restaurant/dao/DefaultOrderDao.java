@@ -11,6 +11,8 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
@@ -18,6 +20,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Slf4j
 @Component
@@ -74,16 +77,28 @@ public class DefaultOrderDao implements OrderDao {
   public Orders createOrder(Orders order) {
     log.debug("I am createOrder() in dao");
     final String sql =
-            "INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) "
-                    + "VALUES (:price, :order_date, :order_filled, :order_type, :customer_id)";
+        "INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) "
+            + "VALUES (:price, :order_date, :order_filled, :order_type, :customer_id)";
 
     SqlParameterSource sqlParam =
-            new MapSqlParameterSource("price", order.getPrice())
-                    .addValue("order_date", order.getOrder_date())
-                    .addValue("order_filled", order.isOrder_filled())
-                    .addValue("order_type", order.getOrder_type())
-                    .addValue("customer_id", order.getCustomer_id());
+        new MapSqlParameterSource("price", order.getPrice())
+            .addValue("order_date", order.getOrder_date())
+            .addValue("order_filled", order.isOrder_filled())
+            .addValue("order_type", order.getOrder_type())
+            .addValue("customer_id", order.getCustomer_id());
 
-    return null;
+    KeyHolder keyHolder = new GeneratedKeyHolder();
+
+    jdbcTemplate.update(sql, sqlParam, keyHolder);
+
+    int order_id = Objects.requireNonNull(keyHolder.getKey()).intValue();
+
+    return Orders.builder()
+        .order_id(order_id)
+        .price(order.getPrice())
+        .order_date(order.getOrder_date())
+        .order_filled(order.isOrder_filled())
+        .customer_id(order.getCustomer_id())
+        .build();
   }
 }

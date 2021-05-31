@@ -19,3 +19,14 @@ INSERT INTO foods (food_name, food_type, description, is_gluten_free, is_vegan, 
 INSERT INTO foods (food_name, food_type, description, is_gluten_free, is_vegan,  price) VALUES ('Budweiser', 'ALCOHOL', 'This Bud is for you.', false, false, '4.99');
 INSERT INTO foods (food_name, food_type, description, is_gluten_free, is_vegan,  price) VALUES ('Chicken Cordon Bleu', 'ENTREE', 'Chicken breasts filled with ham and swiss cheese, baked then finished with a supreme sauce', false, false, '15.99');
 INSERT INTO foods (food_name, food_type, description, is_gluten_free, is_vegan,  price) VALUES ('Sam Adams', 'ALCOHOL', 'Big bottle of Sam Adams', false, false, '4.99');
+
+-- Orders
+INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null,  false, 'CARRYOUT', 1);
+INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null, false, 'DELIVERY', 1);
+INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null, false, 'CARRYOUT', 2);
+INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null, false, 'CARRYOUT', 3);
+INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null, false, 'DELIVERY', 3);
+INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null, false, 'DELIVERY', 3);
+INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null, false, 'DELIVERY', 4);
+INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null, false, 'CURBSIDE', 4);
+INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null, false, 'CURBSIDE', 2);
