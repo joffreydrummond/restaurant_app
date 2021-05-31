@@ -29,6 +29,12 @@ public class DefaultOrderService implements OrderService{
         return null;
     }
 
+    @Override
+    public Orders createOrder(Orders order) {
+        log.debug("I am createOrder() in service");
+        return null;
+    }
+
 //    @Override
 //    public List<OrderTypes> orderTypes() {
 //        return null;

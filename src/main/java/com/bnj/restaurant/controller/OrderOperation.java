@@ -95,7 +95,7 @@ public interface OrderOperation {
                             content =
                             @Content(
                                     mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = Order.class))),
+                                    schema = @Schema(implementation = Orders.class))),
                     @ApiResponse(
                             responseCode = "400",
                             description = "The customer parameters are not correct",
@@ -111,7 +111,7 @@ public interface OrderOperation {
             })
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    Order createOrder(@RequestBody Order order);
+    Orders createOrder(@RequestBody Orders order);
 
 
 }

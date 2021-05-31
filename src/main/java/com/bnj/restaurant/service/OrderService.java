@@ -8,6 +8,6 @@ import java.util.List;
 public interface OrderService {
     List<Orders> getOrders();
     Orders getOrderById(int order_id);
-
+    Orders createOrder(Orders order);
 
 }
