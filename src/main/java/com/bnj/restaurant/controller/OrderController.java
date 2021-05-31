@@ -33,6 +33,6 @@ public class OrderController implements OrderOperation{
     @Override
     public Orders createOrder(Orders order) {
         log.debug("I am createOrder() in controller");
-        return null;
+        return orderService.createOrder(order);
     }
 }

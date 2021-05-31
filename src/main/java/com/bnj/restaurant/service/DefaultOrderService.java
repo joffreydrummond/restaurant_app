@@ -32,7 +32,7 @@ public class DefaultOrderService implements OrderService{
     @Override
     public Orders createOrder(Orders order) {
         log.debug("I am createOrder() in service");
-        return null;
+        return orderDao.createOrder(order);
     }
 
 //    @Override
