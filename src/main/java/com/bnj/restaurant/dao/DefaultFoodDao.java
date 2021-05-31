@@ -77,7 +77,7 @@ public class DefaultFoodDao implements FoodDao {
     final String sql = "SELECT * FROM foods WHERE food_type=:food_type";
 
     Map<String, Object> params = new HashMap<>();
-    params.put("food_type", food_type);
+    params.put("food_type", food_type.name());
 
     return jdbcTemplate.query(
             sql, params,
