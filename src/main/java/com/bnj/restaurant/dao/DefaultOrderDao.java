@@ -17,10 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -41,7 +38,7 @@ public class DefaultOrderDao implements OrderDao {
                 .order_id(rs.getInt("order_id"))
                 .customer_id(rs.getInt("customer_id"))
                 .price(rs.getBigDecimal("price"))
-                .order_date(rs.getDate("order_date"))
+                .order_date(rs.getTimestamp("order_date"))
                 .order_filled(rs.getBoolean("order_filled"))
                 .order_type(OrderTypes.valueOf(rs.getString("order_type")))
                 .build());
@@ -55,7 +52,7 @@ public class DefaultOrderDao implements OrderDao {
           .order_id(rs.getInt("order_id"))
           .customer_id(rs.getInt("customer_id"))
           .price(rs.getBigDecimal("price"))
-          .order_date(rs.getDate("order_date"))
+          .order_date(rs.getTimestamp("order_date"))
           .order_filled(rs.getBoolean("order_filled"))
           .order_type(OrderTypes.valueOf(rs.getString("order_type")))
           .build();
@@ -80,16 +77,18 @@ public class DefaultOrderDao implements OrderDao {
     log.debug("I am createOrder() in dao");
     final String sql =
         "INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) "
-            + "VALUES (:price, :order_date, :order_filled, :order_type, :customer_id)";
+            + "VALUES (:price, CURRENT_DATE(), :order_filled, :order_type, :customer_id)";
 
 //    Map<String, Object> params = new HashMap<>();
 ////    params.put("customer_id", customer_id);
 
+
+
     SqlParameterSource sqlParam =
         new MapSqlParameterSource("price", order.getPrice())
-            .addValue("order_date", order.getOrder_date())
+//            .addValue("order_date", new Date())
             .addValue("order_filled", order.isOrder_filled())
-            .addValue("order_type", order.getOrder_type())
+            .addValue("order_type", order.getOrder_type().name())
             .addValue("customer_id", order.getCustomer_id());
 
     KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -98,12 +97,7 @@ public class DefaultOrderDao implements OrderDao {
 
     int order_id = Objects.requireNonNull(keyHolder.getKey()).intValue();
 
-    return Orders.builder()
-        .order_id(order_id)
-        .price(order.getPrice())
-        .order_date(order.getOrder_date())
-        .order_filled(order.isOrder_filled())
-        .customer_id(order.getCustomer_id())
-        .build();
+
+    return getOrderById(order_id);
   }
 }

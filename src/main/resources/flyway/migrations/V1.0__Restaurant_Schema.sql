@@ -26,7 +26,7 @@ CREATE TABLE customers (
 CREATE TABLE orders (
 	order_id INT NOT NULL AUTO_INCREMENT primary key,
     price decimal(4,2) NOT NULL,
-    order_date date NOT NULL,
+    order_date date,
     order_filled boolean NOT NULL,
     order_type enum('CARRYOUT', 'DELIVERY', 'CURBSIDE') NOT NULL,
     customer_id int not null,

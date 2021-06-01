@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public enum OrderTypes {
   CARRYOUT,
   DELIVERY,
-  CURBSIDE;
+  CURBSIDE
 
 //  private final String enumValue;
 //

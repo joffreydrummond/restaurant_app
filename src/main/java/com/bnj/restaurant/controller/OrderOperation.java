@@ -34,7 +34,7 @@ public interface OrderOperation {
                             content =
                             @Content(
                                     mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = Order.class))),
+                                    schema = @Schema(implementation = Orders.class))),
                     @ApiResponse(
                             responseCode = "404",
                             description = "The requested URL was not found.",
@@ -58,7 +58,7 @@ public interface OrderOperation {
                             content =
                             @Content(
                                     mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = Food.class))),
+                                    schema = @Schema(implementation = Orders.class))),
                     @ApiResponse(
                             responseCode = "400",
                             description = "The order id parameters are not correct",
@@ -84,6 +84,44 @@ public interface OrderOperation {
     @GetMapping("/{order_id}")
     @ResponseStatus(code = HttpStatus.CREATED)
     Orders getOrderById(@PathVariable int order_id);
+
+//    @Operation(
+//            summary = "Get orders not filled",
+//            description = "Get orders not filled",
+//            responses = {
+//                    @ApiResponse(
+//                            responseCode = "201",
+//                            description = "An order is successfully retrieved",
+//                            content =
+//                            @Content(
+//                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+//                                    schema = @Schema(implementation = Food.class))),
+//                    @ApiResponse(
+//                            responseCode = "400",
+//                            description = "The order id parameters are not correct",
+//                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+//                    @ApiResponse(
+//                            responseCode = "404",
+//                            description = "The order was not found by the order id.",
+//                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+//                    @ApiResponse(
+//                            responseCode = "500",
+//                            description = "Internal Server Error Occurred",
+//                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)),
+//            }
+//            ,
+//            parameters = {
+//                    @Parameter(
+//                            name = "order_filled",
+//                            allowEmptyValue = false,
+//                            required = false,
+//                            description = "The order id (i.e, '1', '2', '3')")
+//            }
+//    )
+//    @GetMapping("/{order_filled}")
+//    @ResponseStatus(code = HttpStatus.CREATED)
+//    Orders getOrderByFilledStatus(@PathVariable boolean order_filled);
+
 
     @Operation(
             summary = "Creates a new order",

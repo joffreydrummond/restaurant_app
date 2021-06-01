@@ -32,7 +32,7 @@ INSERT INTO foods (food_name, food_type, description, is_gluten_free, is_vegan, 
 INSERT INTO foods (food_name, food_type, description, is_gluten_free, is_vegan,  price) VALUES ('Bottled Water', 'DRINK', 'Bottled water', false, false, '1.99');
 
 -- Orders
-INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null,  false, 'CARRYOUT', 1);
+INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null, false, 'CARRYOUT', 1);
 INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null, false, 'DELIVERY', 1);
 INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null, false, 'CARRYOUT', 2);
 INSERT INTO orders (price, order_date, order_filled, order_type, customer_id) VALUES ('0', null, false, 'CARRYOUT', 3);
